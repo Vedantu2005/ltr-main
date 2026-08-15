@@ -3,16 +3,21 @@ import { X } from 'lucide-react';
 
 export default function Modal({ open, onClose, title, children, footer }) {
   const dialogRef = useRef(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   useEffect(() => {
     if (!open) return undefined;
     const onKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') onCloseRef.current?.();
     };
     document.addEventListener('keydown', onKeyDown);
+
+    // Initial focus on modal open
     dialogRef.current?.focus();
+
     return () => document.removeEventListener('keydown', onKeyDown);
-  }, [open, onClose]);
+  }, [open]);
 
   if (!open) return null;
 
@@ -29,7 +34,7 @@ export default function Modal({ open, onClose, title, children, footer }) {
         aria-modal="true"
         aria-labelledby="modal-title"
         tabIndex={-1}
-        className="focus-ring w-full max-w-md rounded-lg border border-border bg-surface shadow-card"
+        className="w-full max-w-md rounded-lg border border-border bg-surface shadow-card outline-none"
       >
         <div className="flex items-center justify-between border-b border-border px-5 py-4">
           <h2 id="modal-title" className="font-serif text-lg font-semibold text-foreground">

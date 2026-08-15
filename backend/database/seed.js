@@ -42,10 +42,10 @@ async function main() {
   const [adminResult] = await connection.query(
     'INSERT INTO users (name, email, password_hash, address, role, status) VALUES (?, ?, ?, ?, ?, ?)',
     [
-      'Alexandra Whitfield Administrator',
+      'Aarav Rajesh Sharma Administrator',
       'admin@ratesphere.dev',
       passwordHash,
-      '100 Harbor Administration Plaza, Suite 400, Portland, OR',
+      'Flat 402, Shanti Niketan Apartments, MG Road, Bengaluru, Karnataka',
       'ADMIN',
       'ACTIVE',
     ],
@@ -54,11 +54,11 @@ async function main() {
 
   // --- Normal users ----------------------------------------------------------
   const normalUsers = [
-    ['Marcus Thomas Rodriguez Junior', 'marcus.rodriguez@example.com', '221 Baker Street, Chicago, IL'],
-    ['Priya Lakshmi Venkataraman', 'priya.venkataraman@example.com', '48 Willow Grove Lane, Austin, TX'],
-    ['Benjamin Alexander Whitmore', 'ben.whitmore@example.com', '9 Cedarwood Court, Denver, CO'],
-    ['Sofia Isabella Castellanos', 'sofia.castellanos@example.com', '73 Riverside Drive, Miami, FL'],
-    ['Nathaniel Oliver Higginbotham', 'nathaniel.higgs@example.com', '15 Fairview Terrace, Seattle, WA'],
+    ['Aarav Rajesh Kumar Sharma', 'aarav.sharma@example.in', '42 Indiranagar 100ft Road, Bengaluru, Karnataka'],
+    ['Priya Lakshmi Venkataraman', 'priya.venkataraman@example.in', '15 Anna Nagar West, Chennai, Tamil Nadu'],
+    ['Rohan Devendra Mukherjee', 'rohan.mukherjee@example.in', '88 Salt Lake Sector V, Kolkata, West Bengal'],
+    ['Ananya Sneha Deshmukh Joshi', 'ananya.deshmukh@example.in', '12 FC Road, Shivajinagar, Pune, Maharashtra'],
+    ['Kavya Rajeshwari Sundaram', 'kavya.sundaram@example.in', '74 Jubilee Hills Road No 36, Hyderabad, Telangana'],
   ];
   const userIds = [];
   for (const [name, email, address] of normalUsers) {
@@ -72,9 +72,9 @@ async function main() {
 
   // --- Store owners ----------------------------------------------------------
   const storeOwners = [
-    ['Gabriella Marie Sinclair-Osei', 'gabriella.sinclair@example.com', '300 Market Street, San Francisco, CA'],
-    ['Theodore James Kowalczyk', 'theo.kowalczyk@example.com', '55 Elm Grove Avenue, Boston, MA'],
-    ['Amara Nkechi Adebayo-Fitzgerald', 'amara.adebayo@example.com', '128 Sunset Boulevard, Los Angeles, CA'],
+    ['Rajesh Kumar Rajeshwar Varma', 'rajesh.varma@example.in', '102 Connaught Place Outer Ring, New Delhi, Delhi'],
+    ['Sunita Manisha Choudhury Roy', 'sunita.choudhury@example.in', '56 Park Street Heritage Zone, Kolkata, West Bengal'],
+    ['Amitabh Harishchandra Patel', 'amitabh.patel@example.in', '90 CG Road, Navrangpura, Ahmedabad, Gujarat'],
   ];
   const ownerIds = [];
   for (const [name, email, address] of storeOwners) {
@@ -88,11 +88,11 @@ async function main() {
 
   // --- Stores ------------------------------------------------------------
   const stores = [
-    ['Northbound Coffee Roasters', 'hello@northboundcoffee.example.com', '300 Market Street, San Francisco, CA', ownerIds[0]],
-    ['Kowalczyk Hardware & Supply', 'contact@kowalczykhardware.example.com', '55 Elm Grove Avenue, Boston, MA', ownerIds[1]],
-    ['Adebayo Fine Fabrics', 'orders@adebayofabrics.example.com', '128 Sunset Boulevard, Los Angeles, CA', ownerIds[2]],
-    ['Northbound Coffee Roasters - Downtown', 'downtown@northboundcoffee.example.com', '42 Pine Street, San Francisco, CA', ownerIds[0]],
-    ['Riverside Book Exchange', 'info@riversidebooks.example.com', '18 Riverside Drive, Miami, FL', null],
+    ['Chai Point & Royal Spices Hub', 'orders@royalspices.example.in', '102 Connaught Place Outer Ring, New Delhi, Delhi', ownerIds[0]],
+    ['FabIndia Heritage Silks & Crafts', 'contact@heritagesilks.example.in', '56 Park Street Heritage Zone, Kolkata, West Bengal', ownerIds[1]],
+    ['Patel Sweets & Savouries Emporium', 'info@patelsweets.example.in', '90 CG Road, Navrangpura, Ahmedabad, Gujarat', ownerIds[2]],
+    ['Chai Point & Royal Spices Express', 'express@royalspices.example.in', '15 Cyber City Cyber Hub, Gurugram, Haryana', ownerIds[0]],
+    ['Sapna Heritage Book House India', 'books@sapnabookhouse.example.in', '24 Brigade Road Commercial Center, Bengaluru, Karnataka', null],
   ];
   const storeIds = [];
   for (const [name, email, address, ownerId] of stores) {
@@ -133,8 +133,8 @@ async function main() {
   console.log('Development credentials (password for ALL seeded accounts):');
   console.log(`  password: ${DEV_PASSWORD}`);
   console.log('  admin@ratesphere.dev            (ADMIN)');
-  console.log('  marcus.rodriguez@example.com    (USER)');
-  console.log('  gabriella.sinclair@example.com  (STORE_OWNER)');
+  console.log('  aarav.sharma@example.in         (USER)');
+  console.log('  rajesh.varma@example.in         (STORE_OWNER)');
 }
 
 main().catch((err) => {

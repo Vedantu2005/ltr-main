@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
@@ -29,6 +29,26 @@ export default function DashboardLayout() {
   const toast = useToast();
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    if (!dropdownOpen) return undefined;
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setDropdownOpen(false);
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [dropdownOpen]);
 
   const navItems = NAV_BY_ROLE[user.role] || [];
 
@@ -134,13 +154,59 @@ export default function DashboardLayout() {
           </div>
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <div className="hidden flex-col items-end sm:flex">
-              <span className="text-sm font-medium text-foreground">{user.name}</span>
-              <span className="text-xs text-muted">{user.role.replace('_', ' ')}</span>
+            
+            {/* User Profile / Avatar Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                type="button"
+                onClick={() => setDropdownOpen((prev) => !prev)}
+                className="focus-ring flex items-center gap-3 rounded-full p-1 transition-opacity hover:opacity-90 cursor-pointer"
+                aria-expanded={dropdownOpen}
+                aria-haspopup="true"
+                title="Account menu & Log out"
+              >
+                <div className="hidden flex-col items-end sm:flex">
+                  <span className="text-sm font-medium text-foreground">{user.name}</span>
+                  <span className="text-xs text-muted">{user.role.replace('_', ' ')}</span>
+                </div>
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-muted text-sm font-semibold text-primary ring-1 ring-primary/20 hover:ring-2 hover:ring-primary transition-all">
+                  {user.name.charAt(0)}
+                </span>
+              </button>
+
+              {dropdownOpen && (
+                <div className="absolute right-0 top-full mt-2 w-56 rounded-lg border border-border bg-surface p-2 shadow-card animate-fade-in z-50">
+                  <div className="border-b border-border px-3 py-2">
+                    <p className="text-sm font-medium text-foreground truncate">{user.name}</p>
+                    <p className="text-xs text-muted truncate">{user.email}</p>
+                    <span className="mt-1 inline-block rounded bg-primary-muted px-1.5 py-0.5 text-[10px] font-semibold text-primary uppercase">
+                      {user.role.replace('_', ' ')}
+                    </span>
+                  </div>
+                  <div className="pt-1">
+                    <NavLink
+                      to="/profile"
+                      onClick={() => setDropdownOpen(false)}
+                      className="focus-ring flex items-center gap-2.5 rounded px-3 py-2 text-sm text-foreground transition-colors hover:bg-surface-muted"
+                    >
+                      <UserIcon size={16} className="text-muted" />
+                      My profile
+                    </NavLink>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setDropdownOpen(false);
+                        handleLogout();
+                      }}
+                      className="focus-ring flex w-full items-center gap-2.5 rounded px-3 py-2 text-sm font-medium text-danger transition-colors hover:bg-danger/10 cursor-pointer"
+                    >
+                      <LogOut size={16} />
+                      Log out
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-muted text-sm font-semibold text-primary">
-              {user.name.charAt(0)}
-            </span>
           </div>
         </header>
         <main className="flex-1 px-4 py-6 md:px-8 md:py-8">

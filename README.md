@@ -34,6 +34,32 @@ light/dark design system, server-side pagination/sorting/filtering, and hardened
 - Accessible star-rating component (keyboard operable, ARIA radiogroup)
 - Toasts, skeleton loaders, and empty states throughout
 
+## 📸 UI Previews & Screenshots
+
+### 1. Admin Platform Management
+| Overview & Platform Analytics | User Management & Role Controls |
+|:---:|:---:|
+| ![Admin Overview](./screenshots/admin-overview.png) | ![Admin Users](./screenshots/admin-users.png) |
+
+| Store Registry & Reputation Table |
+|:---:|
+| ![Admin Stores](./screenshots/admin-stores.png) |
+
+### 2. Store Owner Experience
+| Store Owner Analytics & Rating Breakdown |
+|:---:|
+| ![Store Owner Dashboard](./screenshots/store-owner-dashboard.png) |
+
+### 3. Normal User Experience & Rating System
+| Store Directory & Interactive Star Ratings (Light Mode) | Dark Mode Experience |
+|:---:|:---:|
+| ![User Store List](./screenshots/user-stores-view.png) | ![User Store List Dark](./screenshots/user-stores-dark.png) |
+
+### 4. Authentication & User Profile
+| User Profile & Password Management | Secure Authentication (Sign In / Register) |
+|:---:|:---:|
+| ![User Profile](./screenshots/user-profile.png) | ![Sign In](./screenshots/auth-login.png) |
+
 ## Architecture
 
 ```
@@ -145,11 +171,11 @@ npm run dev                 # http://localhost:5173
 
 | Role | Email | Notes |
 |---|---|---|
-| Admin | `admin@ratesphere.dev` | |
-| Normal user | `marcus.rodriguez@example.com` | |
-| Store owner | `gabriella.sinclair@example.com` | owns Northbound Coffee Roasters |
-| Store owner | `theo.kowalczyk@example.com` | owns Kowalczyk Hardware & Supply |
-| Store owner | `amara.adebayo@example.com` | owns Adebayo Fine Fabrics |
+| Admin | `admin@ratesphere.dev` | Aarav Rajesh Sharma Administrator |
+| Normal user | `aarav.sharma@example.in` | Aarav Rajesh Kumar Sharma |
+| Store owner | `rajesh.varma@example.in` | owns Chai Point & Royal Spices Hub |
+| Store owner | `sunita.choudhury@example.in` | owns FabIndia Heritage Silks & Crafts |
+| Store owner | `amitabh.patel@example.in` | owns Patel Sweets & Savouries Emporium |
 
 ### Logging in
 
