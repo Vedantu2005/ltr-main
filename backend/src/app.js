@@ -14,7 +14,10 @@ const app = express();
 app.use(helmet());
 app.use(
   cors({
-    origin: env.clientUrl,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl) or any origin from Vercel / localhost
+      return callback(null, true);
+    },
     credentials: true,
   }),
 );
