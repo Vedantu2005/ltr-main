@@ -23,14 +23,22 @@ app.use(
 );
 app.use(express.json({ limit: '100kb' }));
 
-app.get('/api/health', (req, res) => {
+app.get(['/api/health', '/health'], (req, res) => {
   res.json({ success: true, message: 'RateSphere API is running', env: env.nodeEnv });
 });
 
+// Support both /api/* and /* paths for flexible deployment configuration
 app.use('/api/auth', authRoutes);
+app.use('/auth', authRoutes);
+
 app.use('/api/stores', storeRoutes);
+app.use('/stores', storeRoutes);
+
 app.use('/api/admin', adminRoutes);
+app.use('/admin', adminRoutes);
+
 app.use('/api/store-owner', storeOwnerRoutes);
+app.use('/store-owner', storeOwnerRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
