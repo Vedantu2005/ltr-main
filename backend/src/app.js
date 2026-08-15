@@ -11,7 +11,12 @@ const storeOwnerRoutes = require('./routes/storeOwner.routes');
 
 const app = express();
 
-app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+    crossOriginEmbedderPolicy: false,
+  }),
+);
 app.use(
   cors({
     origin: (origin, callback) => {
