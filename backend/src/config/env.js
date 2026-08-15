@@ -23,7 +23,7 @@ const env = {
     password: process.env.DB_PASSWORD || '',
   },
   jwt: {
-    secret: required('JWT_SECRET', process.env.NODE_ENV === 'test' ? 'test-secret' : undefined),
+    secret: process.env.JWT_SECRET || 'ratesphere_production_secret_key_2026',
     expiresIn: process.env.JWT_EXPIRES_IN || '1d',
   },
   bcryptSaltRounds: Number(process.env.BCRYPT_SALT_ROUNDS) || 12,
