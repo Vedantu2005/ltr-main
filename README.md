@@ -201,6 +201,8 @@ No Swagger/OpenAPI UI is included (out of scope for this build). Route definitio
 
 ## Deployment notes
 
+Step-by-step deployment guide (Railway for backend + MySQL, Vercel for frontend): [DEPLOYMENT.md](DEPLOYMENT.md).
+
 - Backend reads all configuration from environment variables (`backend/.env.example`) — no
   hardcoded `localhost` assumptions in application code. Deployable to Render/Railway/any Node host
   with a reachable MySQL 8 instance.
