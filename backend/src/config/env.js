@@ -13,14 +13,14 @@ const env = {
   port: Number(process.env.PORT) || 5000,
   clientUrl: process.env.CLIENT_URL || 'http://localhost:5173',
   db: {
-    host: process.env.DB_HOST || 'localhost',
-    port: Number(process.env.DB_PORT) || 3306,
+    host: process.env.DB_HOST || process.env.MYSQLHOST || process.env.MYSQL_HOST || 'localhost',
+    port: Number(process.env.DB_PORT || process.env.MYSQLPORT || process.env.MYSQL_PORT) || 3306,
     name:
       process.env.NODE_ENV === 'test'
         ? process.env.TEST_DB_NAME || 'ratesphere_test'
-        : process.env.DB_NAME || 'ratesphere',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
+        : process.env.DB_NAME || process.env.MYSQLDATABASE || process.env.MYSQL_DATABASE || 'ratesphere',
+    user: process.env.DB_USER || process.env.MYSQLUSER || process.env.MYSQL_USER || 'root',
+    password: process.env.DB_PASSWORD || process.env.MYSQLPASSWORD || process.env.MYSQL_PASSWORD || '',
   },
   jwt: {
     secret: process.env.JWT_SECRET || 'ratesphere_production_secret_key_2026',
