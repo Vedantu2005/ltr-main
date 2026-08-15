@@ -1,0 +1,12 @@
+{
+  "name": "ratesphere",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RateSphere root package for deployment delegation",
+  "scripts": {
+    "start": "npm start --prefix backend",
+    "build": "npm install --prefix backend",
+    "test": "npm test --prefix backend",
+    "seed": "npm run seed --prefix backend"
+  }
+}
