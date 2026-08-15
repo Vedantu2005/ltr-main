@@ -37,7 +37,7 @@ light/dark design system, server-side pagination/sorting/filtering, and hardened
 ## Architecture
 
 ```
-Roxiler-main/
+ltr-main/
 ├── backend/                 Express API
 │   ├── src/
 │   │   ├── config/          env + mysql2 pool

@@ -2,7 +2,7 @@
 
 This walks through deploying the backend + MySQL on Railway and the frontend on Vercel. Both have
 free/trial tiers sufficient for this project. You'll need a GitHub account (already used to host
-[Vedantu2005/Roxiler-main](https://github.com/Vedantu2005/Roxiler-main)), a Railway account, and a
+[Vedantu2005/ltr-main](https://github.com/Vedantu2005/ltr-main)), a Railway account, and a
 Vercel account — sign up for both with "Continue with GitHub" to keep it simple.
 
 The steps that involve clicking through a hosting dashboard have to happen on your end — an
@@ -16,7 +16,7 @@ files, commands to run) is already in the repo or spelled out below.
 ### 1. Create the project
 
 1. Go to [railway.app](https://railway.app) → **New Project** → **Deploy from GitHub repo**
-2. Select `Vedantu2005/Roxiler-main`
+2. Select `Vedantu2005/ltr-main`
 3. Railway creates one service pointed at the repo root. Open it → **Settings** → **Root Directory** → set to `backend`
 4. Under **Settings → Networking**, click **Generate Domain** so the backend gets a public URL like `https://roxiler-main-production.up.railway.app`
 
@@ -88,7 +88,7 @@ Should return `{"success":true,"message":"RateSphere API is running","env":"prod
 
 ## Part 2 — Frontend on Vercel
 
-1. Go to [vercel.com](https://vercel.com) → **Add New** → **Project** → import `Vedantu2005/Roxiler-main`
+1. Go to [vercel.com](https://vercel.com) → **Add New** → **Project** → import `Vedantu2005/ltr-main`
 2. **Root Directory**: `frontend`
 3. Framework Preset should auto-detect as **Vite** (build command `npm run build`, output `dist`) — `frontend/vercel.json` is already in the repo so client-side routes (`/admin`, `/stores/5`, etc.) don't 404 on refresh
 4. **Environment Variables** → add:
