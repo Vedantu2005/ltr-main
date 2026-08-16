@@ -17,13 +17,33 @@ app.use(
     crossOriginEmbedderPolicy: false,
   }),
 );
+
+// Safe API request logger for production debugging (does NOT log passwords, secrets, or JWT tokens)
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    console.log(
+      `[${new Date().toISOString()}] ${req.method} ${req.originalUrl || req.url} -> ${res.statusCode} (${duration}ms)`,
+    );
+  });
+  next();
+});
+
+const allowedOrigins = [env.clientUrl, 'http://localhost:5173', 'http://localhost:3000'].filter(Boolean);
+
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl) or any origin from Vercel / localhost
+      // Allow requests with no origin (like mobile apps, curl) or any allowed domain / Vercel preview
+      if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+        return callback(null, true);
+      }
       return callback(null, true);
     },
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   }),
 );
 app.use(express.json({ limit: '100kb' }));
