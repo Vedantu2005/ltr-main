@@ -6,6 +6,11 @@ owners track their reputation, and administrators manage the platform.
 Built to the FullStack Intern Coding Challenge spec, with production-oriented polish: a distinctive
 light/dark design system, server-side pagination/sorting/filtering, and hardened authentication.
 
+## 🚀 Live Demo
+
+- **Frontend (Vercel)**: [https://ltr-main-ooe0c0lpj-vedantinamdar8-3469s-projects.vercel.app](https://ltr-main-ooe0c0lpj-vedantinamdar8-3469s-projects.vercel.app/)
+- **Backend API (Railway)**: `https://ltr-main-production.up.railway.app/api`
+
 ## Features
 
 **System Administrator**
